@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form and Dashboard</title>
+</head>
+<body>
+
+<form id="registrationForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required><br><br>
+  
+  <label for="country">Country:</label>
+  <input type="text" id="country" name="country" required><br><br>
+  
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone" required><br><br>
+  
+  <button type="submit">Register</button>
+</form>
+
+<button onclick="loginAsOwner()">Owner Dashboard</button>
+
+<script>
+const registeredApplicants = [];
+const ownerPassword = '1212';
+
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  const name = document.getElementById('name').value;
+  const country = document.getElementById('country').value;
+  const phone = document.getElementById('phone').value;
+  
+  const applicant = { name, country, phone };
+  registeredApplicants.push(applicant);
+  
+  alert('Registration successful!');
+});
+
+function loginAsOwner() {
+  const password = prompt('Enter owner password:');
+  
+  if (password === ownerPassword) {
+    alert('Login successful! Here are the registered applicants:');
+    registeredApplicants.forEach((applicant, index) => {
+      alert(`Applicant ${index + 1}: Name - ${applicant.name}, Country - ${applicant.country}, Phone - ${applicant.phone}`);
+    });
+  } else {
+    alert('Incorrect password. Please try again.');
+  }
+}
+</script>
+
+</body>
+</html>
